@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <div id="app"></div>
+
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div id="headerDiv">
+      <h1>MONSTER SLAYER</h1>
+    </div>
+    <div id="bars-container">
+      <div id="monsterHealthDiv" class="giveBorders">
+        <h2>Monster Health</h2>
+        <div id="monster-progress-bar"></div>
+      </div>
+      <div id="playerHealthDiv" class="giveBorders">
+        <h2>Player Health</h2>
+        <div id="player-progress-bar"></div>
+      </div>
+    </div>
+    <div id="skills">
+      <div id="skills-container">
+        <button class="giveBorders skill-element">ATTACK</button>
+        <button class="giveBorders skill-element">SPECIAL ATTACK</button>
+        <button class="giveBorders skill-element">HEAL</button>
+        <button class="giveBorders skill-element">SURRENDER</button>
+      </div>
+    </div>
+
+    <div id="battle-log" class="giveBorders">
+      <h3>Battle Log</h3>
+      <p>There will be battle log here!</p>
+    </div>
+  </body>
+</html>
