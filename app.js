@@ -74,7 +74,7 @@ const app = Vue.createApp({
       this.playerHealth = 100;
       this.monsterHealth = 200;
       this.currentRound = 0;
-      this.battleLog = [];
+      this.logMessages = [];
     },
 
     surrender() {
