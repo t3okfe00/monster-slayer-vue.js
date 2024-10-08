@@ -11,36 +11,75 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-    <div id="app"></div>
-
     <script src="app.js" defer></script>
   </head>
+
   <body>
     <div id="headerDiv">
       <h1>MONSTER SLAYER</h1>
     </div>
-    <div id="bars-container">
-      <div id="monsterHealthDiv" class="giveBorders">
-        <h2>Monster Health</h2>
-        <div id="monster-progress-bar"></div>
+    <div id="vue-root">
+      <div id="bars-container">
+        <div id="monsterHealthDiv" class="giveBorders">
+          <h2>Monster Health</h2>
+          <div id="monster-progress-bar" :style="monsterProgressBarStyle"></div>
+        </div>
+        <div id="playerHealthDiv" class="giveBorders">
+          <h2>Player Health</h2>
+          <div id="player-progress-bar" :style="playerProgressBarStyle"></div>
+        </div>
       </div>
-      <div id="playerHealthDiv" class="giveBorders">
-        <h2>Player Health</h2>
-        <div id="player-progress-bar"></div>
+      <div id="skills">
+        <div id="skills-container" v-if="!didGameEnd">
+          <button class="giveBorders skill-element" @click="attackMonster">
+            ATTACK
+          </button>
+          <button
+            class="giveBorders skill-element"
+            @click="specialAttackMonster"
+            :disabled="canSpecialAttack"
+          >
+            SPECIAL ATTACK
+          </button>
+          <button class="giveBorders skill-element" @click="healPlayer">
+            HEAL
+          </button>
+          <button class="giveBorders skill-element" @click="surrender">
+            SURRENDER
+          </button>
+        </div>
+        <div v-else>
+          <div id="game-over-container" class="giveBorders">
+            <h1>Game Over</h1>
+            <p>{{winner}}</p>
+            <button @click="startNewGame">Start New Game</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="skills">
-      <div id="skills-container">
-        <button class="giveBorders skill-element">ATTACK</button>
-        <button class="giveBorders skill-element">SPECIAL ATTACK</button>
-        <button class="giveBorders skill-element">HEAL</button>
-        <button class="giveBorders skill-element">SURRENDER</button>
-      </div>
-    </div>
 
-    <div id="battle-log" class="giveBorders">
-      <h3>Battle Log</h3>
-      <p>There will be battle log here!</p>
+      <div id="battle-log" class="giveBorders">
+        <h3>Battle Log</h3>
+        <ul>
+          <li v-for="logMessage in logMessages">
+            <span
+              v-if="logMessage.actionBy == 'Player'"
+              :style="{color:'green'}"
+            >
+              {{logMessage.actionBy+" "}}</span
+            >
+            <span v-else :style="{color:'red'}"
+              >{{logMessage.actionBy+" "}}</span
+            >
+            <span
+              >{{logMessage.actionType == 'heal' ? 'heals himself for' :
+              'attacks and deals ' }}</span
+            >
+            <span :class="getActionValueClass(logMessage.actionValue)"
+              >{{logMessage.actionValue}}</span
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
