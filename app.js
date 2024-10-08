@@ -34,16 +34,6 @@ const app = Vue.createApp({
   },
 
   methods: {
-    getActionValueClass(value) {
-      console.log("ME RUN");
-      if (value < 8) {
-        return "low-value";
-      } else if (value >= 8 && value < 14) {
-        return "medium-value";
-      } else {
-        return "high-value";
-      }
-    },
     attackMonster() {
       this.currentRound++;
       let attackValue = getRandomValue(5, 12);

@@ -106,6 +106,9 @@ li {
 .high-value {
   color: red;
 }
+.heal-class {
+  color: green;
+}
 
 #game-over-container {
   text-align: center;

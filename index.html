@@ -74,7 +74,8 @@
               >{{logMessage.actionType == 'heal' ? 'heals himself for' :
               'attacks and deals ' }}</span
             >
-            <span :class="getActionValueClass(logMessage.actionValue)"
+            <span
+              :class="logMessage.actionValue > 10 ? 'high-value' : 'low-value'"
               >{{logMessage.actionValue}}</span
             >
           </li>
